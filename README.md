@@ -1,8 +1,23 @@
-# Tverrfaglig ukesoppgave
+# Checklist
 
-This repository will hold the source code for both the frontend and backend.
+- [x] oauth2 supported (~~google~~ discord)
+- [x] Local username+password support
+- [x] Hashing and salting of passwords
 
-Checklist:
-- [ ] Login system
-- [ ] Document the code
+# Development
 
+Good old
+
+You need to make a `users.db` file and set some enviormental variables (or in a `.env` file) before you can start
+
+```sh
+PORT=4000
+DISCORD_ID=
+DISCORD_SECRET=
+CALLBACK_URL=
+```
+
+```sh
+npm i
+npm start
+```

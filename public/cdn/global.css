@@ -1,0 +1,9 @@
+.footer h2 {
+	text-align: center;
+}
+
+.collapsible label[for="collapsible1"] > .bar1,
+.bar2,
+.bar3 {
+	height: 0.3rem;
+}

@@ -1,1 +1,3 @@
-*.dia~
+node_modules
+.env
+users.db

@@ -1,0 +1,17 @@
+doctype html
+html(lang="en", dir="ltr")
+	head
+		title= pageName
+		meta(charset="utf-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		link(
+			rel="stylesheet",
+			href="https://unpkg.com/papercss@1.8.3/dist/paper.min.css"
+		)
+		link(rel="stylesheet", href="/cdn/global.css")
+		#colorScheme
+	body
+		include nav.pug
+		.paper
+			block content
+		include footer.pug

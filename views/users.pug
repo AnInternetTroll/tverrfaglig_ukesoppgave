@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	h1 Users
+	- for (let i = 0; i < users.length; i++)
+		.card(style="width: 20rem")
+			.card-header= users[i].username
+			.card-body
+				h4.card-title= users[i].username
+				p.card-text= users[i].email
