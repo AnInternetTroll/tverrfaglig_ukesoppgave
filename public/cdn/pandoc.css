@@ -1,0 +1,57 @@
+blockquote {
+	margin: 1em 0 1em 1.7em;
+	padding-left: 1em;
+	border-left: 2px solid #e6e6e6;
+	color: #606060;
+}
+code {
+	font-family: Menlo, Monaco, "Lucida Console", Consolas, monospace;
+	font-size: 85%;
+	margin: 0;
+}
+pre {
+	margin: 1em 0;
+	overflow: auto;
+}
+pre code {
+	padding: 0;
+	overflow: visible;
+	overflow-wrap: normal;
+}
+.sourceCode {
+	background-color: transparent;
+	overflow: visible;
+}
+#TOC li {
+	list-style: none;
+}
+#TOC ul {
+	padding-left: 1.3em;
+}
+#TOC > ul {
+	padding-left: 0;
+}
+#TOC a:not(:hover) {
+	text-decoration: none;
+}
+code {
+	white-space: pre-wrap;
+}
+span.smallcaps {
+	font-variant: small-caps;
+}
+span.underline {
+	text-decoration: underline;
+}
+div.column {
+	display: inline-block;
+	vertical-align: top;
+	width: 50%;
+}
+div.hanging-indent {
+	margin-left: 1.5em;
+	text-indent: -1.5em;
+}
+ul.task-list {
+	list-style: none;
+}

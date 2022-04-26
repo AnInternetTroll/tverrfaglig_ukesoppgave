@@ -1,0 +1,69 @@
+extends layout
+
+block content
+	link(rel="stylesheet", href="/cdn/pandoc.css")
+	h1#api API
+	p
+	| This document describes how the various routes work on this
+	| website.
+	h2#discord
+	code /discord
+	p The callback endpoint that discord will redirect to.
+	pre.http
+		| GET /discord
+		| 	?code=DISCORD_OAUTH2_CODE
+	p
+	| This will either redirect to
+	code /me
+	|
+	| on success or throw an
+	| error if something went wrong, such as
+	code email
+	|
+	| indent not
+	| provided or invalid code.
+	h2#login
+	code /login
+	p Show the login page
+	pre.http
+		| GET /login
+	p Send a username and password to log in
+	pre.http
+		| POST /login
+		|
+		| email=&quot;Example@gmail.com&quot;; password=&quot;Example&quot;
+	p
+	| This will set a cookie named
+	code connect.sid
+	|
+	| to recognise
+	| the user throughout various pages.
+	h2#logout
+	code /logout
+	p Log out the user
+	pre.http
+		| GET /logout
+	p This will delete the internal session associated with the user.
+	h2#me
+	code /me
+	blockquote
+	p Requires auth!
+	p Show info about the logged in user
+	pre.http
+		| GET /me
+	h2#register
+	code /register
+	p Show the register page
+	pre.http
+		| GET /register
+	p Make a new account
+	pre.http
+		| POST /register
+		|
+		| username=&quot;Example&quot;; password=&quot;Example&quot;; email=&quot;Example@gmail.com&quot;
+
+	h2#users
+	code /users
+	p See all users saved on the website
+	pre.http
+		| GET /users

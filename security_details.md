@@ -12,6 +12,8 @@ To do so we have implemented a system of hashing and salting passwords.
 
 To achieve this level of security we have 4 main frameworks that do the job.
 
+![Framework order](/cdn/framework_setup.png)
+
 ### Express
 
 Express is an HTTP wrapper around node's built in http library.
@@ -38,3 +40,16 @@ We use SQLite to store our data. SQLite is a database solution that saves the da
 Unlike PostgreSQL or MySQL/MariaDB or MongoDB there is no setup involved.
 Just one file. As such it makes the database really portable, while remaining a strong choice for saving data.
 SQLite uses the SQL syntax, so it will be easy in the future to switch to a more advanced database.
+
+## Threat
+
+To mitigate against brute forcing attacks we have limited every IP to only 10 logins every 15 min. This should protect us against DDoSing,
+And only 100 requests for every 15 min on the whole site.
+
+# Development
+
+The development started on GitHub. We made a couple of issues and then set them up in a GitHub project.
+
+![Github project](/cdn/github_project.png)
+
+Then just work on one issue at a time and fix others along the way.
