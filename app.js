@@ -78,7 +78,7 @@ passport.use(
 				username
 			);
 			if (!user) {
-				return done(null, false, { message: "Incorrect username." });
+				return done(null, false, { message: "Incorrect username or password." });
 			}
 			pbkdf2(password, user.salt, 1000, 32, "sha256", async (err, key) => {
 				if (err) return done(err);
@@ -93,9 +93,8 @@ passport.use(
 				);
 			});
 		} catch (err) {
-			if (err) {
-				return done(err);
-			}
+			console.error(err);
+			return done(err);
 		}
 	})
 );
@@ -108,7 +107,7 @@ passport.use(
 			callbackURL: process.env.CALLBACK_URL,
 			scope: ["email", "identity"],
 		},
-		async (accessToken, refreshToken, profile, cb) => {
+		async (_accessToken, _refreshToken, profile, cb) => {
 			try {
 				const discordUser = await db.get(
 					"SELECT username FROM users_discord WHERE discord_id = ?",
@@ -155,10 +154,15 @@ passport.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req, res, next) => {
+	res.locals.user = req.user;
+	next();
+})
+
 app.set("view engine", "pug");
 
 app.use(express.static("public"));
-app.get("/login", (req, res) =>
+app.get("/login", (_req, res) =>
 	res.render("login", {
 		status: null,
 		discordLink: `https://discord.com/api/oauth2/authorize?client_id=${
@@ -169,17 +173,9 @@ app.get("/login", (req, res) =>
 	})
 );
 
-app.post("/login", restrict, (req, res) => {
+app.post("/login", restrict, (_req, res) => {
 	// If this function gets called, authentication was successful.
-	// "req.user" contains the authenticated user.
-	res.render("login", {
-		status: "Welcome, ${req.user.username}",
-		discordLink: `https://discord.com/api/oauth2/authorize?client_id=${
-			process.env.DISCORD_ID
-		}&redirect_uri=${encodeURIComponent(
-			process.env.CALLBACK_URL
-		)}&response_type=code&scope=${encodeURIComponent("identify email")}`,
-	});
+	res.redirect("/me");
 });
 
 app.get("/discord_login", passport.authenticate("discord"));
@@ -188,15 +184,15 @@ app.get(
 	passport.authenticate("discord", {
 		failureRedirect: "/login",
 	}),
-	(req, res) => {
+	(_req, res) => {
 		res.redirect("/login"); // Successful auth
 	}
 );
 
-app.get("/register", (req, res) => res.render("register", { status: null }));
+app.get("/register", (_req, res) => res.render("register", { status: null }));
 app.post("/register", (req, res) => {
 	const salt = randomBytes(16);
-	pbkdf2(req.body.password, salt, 1000, 32, "sha256", async (err, key) => {
+	pbkdf2(req.body.password, salt, 1000, 32, "sha256", async (_err, key) => {
 		try {
 			await db.run(
 				"INSERT INTO users_local (username, hash, salt) VALUES (?, ?, ?)",
@@ -211,15 +207,27 @@ app.post("/register", (req, res) => {
 			);
 			req.logIn({
 				username: req.body.username,
+			}, (err) => {
+				if (err) {
+					console.error(err);
+					return res.render("error", {message: err.message});
+				}
+				res.redirect("/me");
 			});
-			res.redirect("/login");
 		} catch (err) {
-			res.send(err);
+			console.error(err);
+			res.render("error", { message: err.message });
 		}
 	});
 });
 
-app.get("/users", async (req, res) => {
+app.get("/logout", (req, res) => {
+	req.logOut();
+	// Redirect the user to where they came from
+	res.redirect(req.headers.referer || "/login");
+})
+
+app.get("/users", async (_req, res) => {
 	res.render("users", {
 		users: await db.all("SELECT * FROM users"),
 	});

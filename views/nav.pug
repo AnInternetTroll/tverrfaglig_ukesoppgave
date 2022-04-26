@@ -13,6 +13,9 @@ nav.border.fixed.split-nav
 				li
 					a(href="/docs") Documentation
 				li
-					a(href="/login") Login
+					if user
+						a(href="/logout") Logout
+					else 
+						a(href="/login") Login
 				li
 					a(href="#") Github
