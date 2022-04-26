@@ -1,53 +1,68 @@
 <h1 id="security">Security</h1>
-<p>Here at [COMPANY NAME HERE] we take security very seriously. One such
-aspect is how we save user data.</p>
+<p>
+	Here at [COMPANY NAME HERE] we take security very seriously. One such aspect
+	is how we save user data.
+</p>
 <h2 id="users">Users</h2>
-<p>Users are the backbone of our platform, and as such we need to keep
-their passwords safe. To do so we have implemented a system of hashing
-and salting passwords.</p>
+<p>
+	Users are the backbone of our platform, and as such we need to keep their
+	passwords safe. To do so we have implemented a system of hashing and salting
+	passwords.
+</p>
 <h2 id="setup">Setup</h2>
-<p>To achieve this level of security we have 4 main frameworks that do
-the job.</p>
+<p>
+	To achieve this level of security we have 4 main frameworks that do the job.
+</p>
 <figure>
-<img src="/cdn/framework_setup.png" alt="Framework order" />
-<figcaption aria-hidden="true">Framework order</figcaption>
+	<img src="/cdn/framework_setup.png" alt="Framework order" />
+	<figcaption aria-hidden="true">Framework order</figcaption>
 </figure>
 <h3 id="express">Express</h3>
-<p>Express is an HTTP wrapper around node’s built in http library. It
-will help us send data and websites to and from the browser. It also
-supports something called “middlewares”, which will help us authenticate
-a user before they are allowed on a website.</p>
+<p>
+	Express is an HTTP wrapper around node’s built in http library. It will help
+	us send data and websites to and from the browser. It also supports something
+	called “middlewares”, which will help us authenticate a user before they are
+	allowed on a website.
+</p>
 <h3 id="passport.js">Passport.js</h3>
-<p>Passport.js is a middleware library for express. It will save a
-cookie in the user’s browser, then whenever the user wants to check out
-a restricted route passport.js will check the cookie for the correct
-user and if they have permission.</p>
+<p>
+	Passport.js is a middleware library for express. It will save a cookie in the
+	user’s browser, then whenever the user wants to check out a restricted route
+	passport.js will check the cookie for the correct user and if they have
+	permission.
+</p>
 <h3 id="bcrypt">bcrypt</h3>
-<p>Bcrypt is a library for hasing passwords. It is used to safely save
-passwords. To find out if a user wrote the same password we take their
-input, mush it in the same way that we mushed the previous password, and
-see if the result is the same. If something happens where an attacker
-finds the hashed password it will be very difficult for them to find out
-the original password. All they can do is try and try again with many
-passwords until they stumble upon the right one. Which is why you still
-need a strong password.</p>
+<p>
+	Bcrypt is a library for hasing passwords. It is used to safely save passwords.
+	To find out if a user wrote the same password we take their input, mush it in
+	the same way that we mushed the previous password, and see if the result is
+	the same. If something happens where an attacker finds the hashed password it
+	will be very difficult for them to find out the original password. All they
+	can do is try and try again with many passwords until they stumble upon the
+	right one. Which is why you still need a strong password.
+</p>
 <h3 id="sqlite">SQLite</h3>
-<p>We use SQLite to store our data. SQLite is a database solution that
-saves the data to a single file. Unlike PostgreSQL or MySQL/MariaDB or
-MongoDB there is no setup involved. Just one file. As such it makes the
-database really portable, while remaining a strong choice for saving
-data. SQLite uses the SQL syntax, so it will be easy in the future to
-switch to a more advanced database.</p>
+<p>
+	We use SQLite to store our data. SQLite is a database solution that saves the
+	data to a single file. Unlike PostgreSQL or MySQL/MariaDB or MongoDB there is
+	no setup involved. Just one file. As such it makes the database really
+	portable, while remaining a strong choice for saving data. SQLite uses the SQL
+	syntax, so it will be easy in the future to switch to a more advanced
+	database.
+</p>
 <h2 id="threat">Threat</h2>
-<p>To mitigate against brute forcing attacks we have limited every IP to
-only 10 logins every 15 min. This should protect us against DDoSing, And
-only 100 requests for every 15 min on the whole site.</p>
+<p>
+	To mitigate against brute forcing attacks we have limited every IP to only 10
+	logins every 15 min. This should protect us against DDoSing, And only 100
+	requests for every 15 min on the whole site.
+</p>
 <h1 id="development">Development</h1>
-<p>The development started on GitHub. We made a couple of issues and
-then set them up in a GitHub project.</p>
+<p>
+	The development started on GitHub. We made a couple of issues and then set
+	them up in a GitHub project.
+</p>
 <figure>
-<img src="/cdn/github_project.png" alt="Github project" />
-<figcaption aria-hidden="true">Github project</figcaption>
+	<img src="/cdn/github_project.png" alt="Github project" />
+	<figcaption aria-hidden="true">Github project</figcaption>
 </figure>
-<p>Then just work on one issue at a time and fix others along the
-way.</p>
+<p>Then just work on one issue at a time and fix others along the way.</p>

@@ -11,11 +11,16 @@ nav.border.fixed.split-nav
 		.collapsible-body
 			ul.inline
 				li
-					a(href="/docs") Documentation
+					a(href="/") Home
 				li
-					if user
+					a(href="/reference") Documentation
+				if user
+					li
 						a(href="/logout") Logout
-					else
+				else
+					li
 						a(href="/login") Login
+					li
+						a(href="/register") Register
 				li
-					a(href="#") Github
+					a(href="https://github.com/AnInternetTroll/tverrfaglig_ukesoppgave") Github

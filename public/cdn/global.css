@@ -7,3 +7,10 @@
 .bar3 {
 	height: 0.3rem;
 }
+
+.discordLogo {
+	display: inline;
+	border: 0 !important;
+	height: 1rem;
+	padding: 0 0.5rem 0 0;
+}
