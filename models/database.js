@@ -2,6 +2,7 @@ import { open } from "sqlite";
 import sqlite3 from "sqlite3";
 import { config } from "./config.js";
 
+// This is the database table setup
 /*
 CREATE TABLE "users_local" (
 	"username"	TEXT NOT NULL UNIQUE,

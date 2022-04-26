@@ -1,5 +1,7 @@
 import { config as configDotenv } from "dotenv";
 
+// `dotenv` reads from .env file in the root directory of the project
+// This function will read the file and set `process.env.NAME` to the value set in the .env file
 configDotenv();
 
 export default class Config {
@@ -8,6 +10,7 @@ export default class Config {
 	DISCORD_SECRET;
 	CALLBACK_URL;
 	SQLITE;
+	SECRET;
 
 	constructor() {
 		this.PORT = process.env.PORT;
@@ -15,6 +18,7 @@ export default class Config {
 		this.DISCORD_SECRET = process.env.DISCORD_SECRET;
 		this.CALLBACK_URL = process.env.CALLBACK_URL;
 		this.SQLITE = process.env.SQLITE;
+		this.SECRET = process.env.SECRET;
 	}
 }
 

@@ -5,7 +5,10 @@ import { Strategy as LocalStrategy } from "passport-local";
 import { config } from "../models/config.js";
 import User from "../models/user.js";
 
-passport.serializeUser((user, done) => done(null, user.username));
+passport.serializeUser((user, done) =>
+	// Username is the primary key
+	done(null, user.username)
+);
 
 passport.deserializeUser(async (username, done) => {
 	try {
@@ -21,11 +24,15 @@ passport.use(
 			const user = await User.findByEmail(email);
 			if (!user) {
 				return done(null, false, {
+					// Despite knowing that no user exists with that email
+					// We will pretend we don't know what is going on
+					// To protect against attacks kinda
 					message: "Incorrect email or password.",
 				});
 			}
 			if (!User.comparePassword(password, user.hash, user.salt))
 				return done(null, false, {
+					// Same deal here
 					message: "Incorrect email or password.",
 				});
 			return done(null, user);
@@ -46,6 +53,8 @@ passport.use(
 		},
 		async (_accessToken, _refreshToken, profile, cb) => {
 			try {
+				// Check if a discord user already exists in the database
+				// And if not make one
 				const user = await User.findByDiscordId(profile.id);
 				if (user) {
 					return cb(null, user);

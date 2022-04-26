@@ -13,30 +13,53 @@ const SQLiteStoreSession = SQLiteStore(session);
 app.use(express.static("public"));
 app.use(
 	session({
-		secret: randomBytes(16).toString("utf-8"),
+		// Use a pre-defined secret
+		// Or generate a new one if it doesn't exist
+		// Ideally a pre-made secret should be defined
+		// To keep users logged in in case of a server restart
+		secret: config.SECRET || randomBytes(16).toString("utf-8"),
 		resave: false,
 		saveUninitialized: false,
+		// Save the sessions to a persistent database
+		// here we use the same SQLite database as for the users
 		store: new SQLiteStoreSession({
 			table: "sessions",
 			db: config.SQLITE,
 		}),
 	})
 );
+// Decode URI encoded bodies
+// Such as input coming from requests
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Change this in case of migration to some other view engine
+// Such as EJS or Handlebreak
 app.set("view engine", "pug");
 app.use(express.static("public"));
 
+// Send the user as a global variable
+// To the view engine
+// Used for the navbar for example
 app.use((req, res, next) => {
 	res.locals.user = req.user;
 	next();
 });
 app.use(routes);
+app.use((err, _req, res, _next) => {
+	console.error(err);
+	res.status(500).send("Something broke! :(");
+});
 
-app.listen(process.env.PORT, () =>
-	console.log(`listening on port http://localhost:${process.env.PORT}/login`)
+const server = app.listen(process.env.PORT || 3000, () =>
+	console.log(`Listening on port http://localhost:${process.env.PORT}/login`)
 );
+
+process.on("SIGTERM", () => {
+	console.debug("SIGTERM signal received: closing HTTP server");
+	server.close(() => {
+		console.debug("HTTP server closed");
+	});
+});

@@ -8,7 +8,7 @@ router.get(
 	passport.authenticate("discord", {
 		failureRedirect: "/login",
 		successRedirect: "/me",
-	}),
+	})
 );
 
 export default router;
