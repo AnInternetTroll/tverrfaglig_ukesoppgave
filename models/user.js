@@ -35,7 +35,7 @@ export default class User {
 	 * And salt/hash the password
 	 */
 	async save() {
-		if (!this.hash) {
+		if (!this.hash || !this.discordId) {
 			this.salt = randomBytes(16);
 			this.hash = User.hashPassword(this.password, this.salt);
 		}
