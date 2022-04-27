@@ -1,4 +1,5 @@
 import { Router } from "express";
+import createError from "http-errors";
 
 import loginRoutes from "./login.js";
 import logoutRoutes from "./logout.js";
@@ -8,7 +9,6 @@ import meRoutes from "./me.js";
 import discordRoutes from "./discord.js";
 import referenceRoutes from "./reference.js";
 import { config } from "../models/config.js";
-import createError from "http-errors";
 
 const router = Router();
 

@@ -13,12 +13,14 @@ html(lang="en", dir="ltr")
 			href="https://unpkg.com/papercss@1.8.3/dist/paper.min.css"
 		)
 		link(rel="stylesheet", href="/cdn/global.css")
-		#colorScheme
 	body
 		include nav.pug
-		.paper.row
-			.lg-4.md-2.col
-			.lg-4.md-6.col
-				block content
-			.lg-4.md-2.col
-		include footer.pug
+		main
+			.paper.row
+				.lg-4.md-2.col
+				.lg-4.md-6.col
+					section
+						block content
+				.lg-4.md-2.col
+		footer
+			include footer.pug

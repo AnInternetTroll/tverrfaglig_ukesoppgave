@@ -1,13 +1,19 @@
+html {
+	scroll-behavior: smooth;
+}
+
 .footer h2 {
 	text-align: center;
 }
 
+/* https://github.com/papercss/papercss/pull/244 */
 .collapsible label[for="collapsible1"] > .bar1,
 .bar2,
 .bar3 {
 	height: 0.3rem;
 }
 
+/* Make the discord logo be kinda the same size as the text. */
 .discordLogo {
 	display: inline;
 	border: 0 !important;
