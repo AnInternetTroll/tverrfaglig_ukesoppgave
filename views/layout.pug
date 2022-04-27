@@ -16,6 +16,9 @@ html(lang="en", dir="ltr")
 		#colorScheme
 	body
 		include nav.pug
-		.paper
-			block content
+		.paper.row
+			.lg-4.md-2.col
+			.lg-4.md-6.col
+				block content
+			.lg-4.md-2.col
 		include footer.pug
