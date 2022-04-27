@@ -13,6 +13,26 @@ html {
 	height: 0.3rem;
 }
 
+#TOC {
+	position: inherit !important;
+}
+#TOC ul > * {
+	padding-top: 0.2rem;
+	padding-bottom: 0.2rem;
+}
+#TOC li {
+	list-style: none;
+}
+#TOC ul {
+	padding-left: 1.3em;
+}
+#TOC > ul {
+	padding-left: 0;
+}
+#TOC a:not(:hover) {
+	text-decoration: none;
+}
+
 /* Make the discord logo be kinda the same size as the text. */
 .discordLogo {
 	display: inline;

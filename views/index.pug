@@ -5,6 +5,32 @@ block title
 	- var pageDescription = "A description of how security is implemented on this website.";
 
 block content
+	h1 Table of Contents
+	nav#TOC(role="doc-toc")
+		ul
+			li
+				a(href="#security") Security
+			ul
+				li
+					a(href="#users") Users
+				li
+					a(href="#setup") Setup
+				ul
+					li
+						a(href="#express") Express
+					li
+						a(href="#passport.js") Passport.js
+					li
+						a(href="#bcrypt") bcrypt
+					li
+						a(href="#sqlite") SQLite
+				li
+					a(href="#threat") Threat
+			li
+				a(href="#development") Development
+			li
+				a(href="#production") Production
+
 	h1#security Security
 	p
 		| Here at [COMPANY NAME HERE] we take security very seriously. One such
