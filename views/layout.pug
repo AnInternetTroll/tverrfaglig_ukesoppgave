@@ -1,7 +1,11 @@
 doctype html
 html(lang="en", dir="ltr")
 	head
+		block title
 		title= pageName
+		meta(property="og:title", content=pageName)
+		meta(property="og:description", content=pageDescription)
+		meta(name="theme-color", content="#41403e")
 		meta(charset="utf-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		link(

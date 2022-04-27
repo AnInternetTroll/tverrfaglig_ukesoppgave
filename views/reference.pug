@@ -1,5 +1,9 @@
 extends layout
 
+block title
+	- var pageName = "API Reference";
+	- var pageDescription = "The API reference on how the website works.";
+
 block content
 	link(rel="stylesheet", href="/cdn/pandoc.css")
 	h1#api API

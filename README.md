@@ -19,7 +19,17 @@ SQLITE=
 SECRET=
 ```
 
+# Production
+
+```sh
+npm i --only=production
+npm start
+```
+
+# Development
+
 ```sh
 npm i
-npm start
+npm run dev
+npm run fmt
 ```

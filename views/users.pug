@@ -1,5 +1,9 @@
 extends layout
 
+block title
+	- var pageName = "Users";
+	- var pageDescription = "See all users on the website.";
+
 block content
 	h1 Users
 	each user in users

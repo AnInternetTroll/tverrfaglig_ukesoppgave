@@ -1,5 +1,9 @@
 extends layout
 
+block title
+	- var pageName = "Home";
+	- var pageDescription = "A description of how security is implemented on this website.";
+
 block content
 	h1#security Security
 	p
@@ -62,3 +66,10 @@ block content
 	p
 		| Then just work on one issue at a time and fix others along the
 		| way.
+	h1#production Production
+	p
+		| This website is hosted on the next generation in computing hardware
+		| named Raspberry Pi 4.
+	p
+		| With the help of NGINX and Node.JS we can route the domain to the right program
+		| And have NGINX handle certificates for us.

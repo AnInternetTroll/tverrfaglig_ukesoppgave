@@ -1,5 +1,9 @@
 extends layout
 
+block title
+	- var pageName = "Register";
+	- var pageDescription = "Make a new account.";
+
 block content
 	h1 Register
 	form(method="POST", action="/register")

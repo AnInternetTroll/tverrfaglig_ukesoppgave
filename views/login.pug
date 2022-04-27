@@ -1,5 +1,9 @@
 extends layout
 
+block title
+	- var pageName = "Login";
+	- var pageDescription = "A description of how security is implemented on this website.";
+
 block content
 	h1 Login
 	form(method="POST", action="/login")

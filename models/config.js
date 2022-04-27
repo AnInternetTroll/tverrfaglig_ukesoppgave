@@ -11,6 +11,7 @@ export default class Config {
 	CALLBACK_URL;
 	SQLITE;
 	SECRET;
+	NODE_ENV;
 
 	constructor() {
 		this.PORT = process.env.PORT;
@@ -19,6 +20,7 @@ export default class Config {
 		this.CALLBACK_URL = process.env.CALLBACK_URL;
 		this.SQLITE = process.env.SQLITE;
 		this.SECRET = process.env.SECRET;
+		this.NODE_ENV = process.env.NODE_ENV;
 	}
 }
 

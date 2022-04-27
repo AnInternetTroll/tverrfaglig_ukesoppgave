@@ -1,5 +1,12 @@
 extends layout
 
+block title
+	- var pageName = "Error - " + message;
+	- var pageDescription = "An error has occured";
+
 block content
 	h1 An error has occured
 	p= message
+	if stack
+		pre
+			code= stack
