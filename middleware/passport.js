@@ -23,18 +23,14 @@ passport.use(
 		try {
 			const user = await User.findByEmail(email);
 			if (!user) {
-				return done(null, false, {
-					// Despite knowing that no user exists with that email
-					// We will pretend we don't know what is going on
-					// To protect against attacks kinda
-					message: "Incorrect email or password.",
-				});
+				// Despite knowing that no user exists with that email
+				// We will pretend we don't know what is going on
+				// To protect against attacks kinda
+				return done(new Error("Incorrect email or password"));
 			}
 			if (!User.comparePassword(password, user.hash, user.salt))
-				return done(null, false, {
-					// Same deal here
-					message: "Incorrect email or password.",
-				});
+				// Same deal here
+				return done(new Error("Incorrect email or password."));
 			return done(null, user);
 		} catch (err) {
 			console.error(err);
@@ -77,5 +73,8 @@ passport.use(
 export default passport;
 
 export function restrict(req, res, next) {
-	passport.authenticate("local")(req, res, next);
+	passport.authenticate(["local"], {
+		failureMessage: true,
+		failWithError: true,
+	})(req, res, next);
 }

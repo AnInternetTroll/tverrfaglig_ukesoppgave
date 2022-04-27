@@ -131,6 +131,7 @@ export default class User {
 	 */
 	static async findByEmail(email) {
 		const user = await db.get("SELECT * FROM users WHERE email = ?", email);
+		if (!user) return null;
 		return User.find(user.username);
 	}
 
